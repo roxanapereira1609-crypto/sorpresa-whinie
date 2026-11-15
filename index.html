@@ -1,0 +1,507 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Mi Whinie Phoo ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(ellipse at top, #263766, #090d22 75%);
+      color: white;
+      font-family: Georgia, serif;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    .estrellas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .estrella {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: white;
+      animation: brillar 2s infinite alternate;
+    }
+
+    @keyframes brillar {
+      from {
+        opacity: 0.2;
+        transform: scale(0.6);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1.5);
+      }
+    }
+
+    .contenido {
+      position: relative;
+      z-index: 2;
+      padding: 35px 20px;
+      max-width: 500px;
+      width: 100%;
+      margin: auto;
+    }
+
+    .luna {
+      font-size: 70px;
+      animation: flotar 3s ease-in-out infinite;
+    }
+
+    @keyframes flotar {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    h1 {
+      color: #ffd1e7;
+      font-size: 32px;
+      text-shadow: 0 0 20px #e96ca0;
+    }
+
+    h2 {
+      color: #ffd1e7;
+    }
+
+    p {
+      line-height: 1.8;
+      font-size: 18px;
+    }
+
+    button {
+      border: none;
+      border-radius: 30px;
+      padding: 15px 25px;
+      margin: 12px 5px;
+      background: linear-gradient(135deg, #ff79b0, #c34385);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 0 20px #e96ca066;
+      transition: transform 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.06);
+    }
+
+    button:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 4px;
+    }
+
+    .oculto {
+      display: none !important;
+    }
+
+    .carta {
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid #ffb9d8;
+      border-radius: 22px;
+      padding: 25px;
+      margin-top: 25px;
+      backdrop-filter: blur(8px);
+      animation: aparecer 1.2s ease;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .corazon,
+    .guitarra-flotante {
+      position: fixed;
+      bottom: -60px;
+      pointer-events: none;
+      z-index: 1;
+      will-change: transform, opacity;
+    }
+
+    .corazon {
+      animation: subir linear forwards;
+    }
+
+    @keyframes subir {
+      from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+
+      to {
+        transform: translateY(-115vh) rotate(25deg);
+        opacity: 0;
+      }
+    }
+
+    .guitarra-flotante {
+      opacity: 0;
+      filter: drop-shadow(0 0 8px rgba(255, 190, 220, 0.5));
+      animation: guitarraSubir linear forwards;
+    }
+
+    @keyframes guitarraSubir {
+      0% {
+        transform: translateY(0) rotate(-15deg);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: 0.9;
+      }
+
+      50% {
+        transform: translateY(-55vh) rotate(15deg);
+        opacity: 0.9;
+      }
+
+      85% {
+        opacity: 0.7;
+      }
+
+      100% {
+        transform: translateY(-115vh) rotate(-10deg);
+        opacity: 0;
+      }
+    }
+
+    .pantalla-final {
+      animation: aparecer 1.5s ease;
+    }
+
+    .marco-foto {
+      width: 85%;
+      max-width: 320px;
+      margin: 25px auto;
+      padding: 10px;
+      background: linear-gradient(135deg, #ffb4d4, #f6d8a0);
+      border-radius: 22px;
+      box-shadow: 0 0 35px #ff79b077;
+      animation: flotar 4s ease-in-out infinite;
+    }
+
+    .marco-foto img {
+      display: block;
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 15px;
+      opacity: 1;
+      transition: opacity 1s ease;
+    }
+
+    .marco-foto img.desvanecer {
+      opacity: 0;
+    }
+
+    .mensaje-final {
+      color: #ffd1e7;
+      font-size: 26px;
+      text-shadow: 0 0 15px #e96ca0;
+    }
+
+    .texto-final {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid #ffb9d8;
+      border-radius: 20px;
+      padding: 18px;
+      margin: 20px auto;
+      max-width: 370px;
+      color: #ffe3ef;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 27px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      .marco-foto img {
+        height: 300px;
+      }
+
+      button {
+        font-size: 15px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .estrella,
+      .corazon,
+      .guitarra-flotante {
+        animation: none;
+        display: none;
+      }
+
+      .luna,
+      .marco-foto,
+      .carta,
+      .pantalla-final {
+        animation: none;
+      }
+
+      .marco-foto img {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="estrellas" id="estrellas"></div>
+
+  <main class="contenido">
+
+    <section id="bienvenida">
+
+      <div class="luna">🌙</div>
+
+      <h1>Para Mi Whinie Phoo ❤️</h1>
+
+      <p>
+        Entre millones de estrellas,
+        hay alguien que ilumina mi universo...
+      </p>
+
+      <button id="abrir">
+        💌 Tengo algo para usted
+      </button>
+
+    </section>
+
+    <section id="carta" class="carta oculto">
+
+      <h2>Mi persona especial 💗</h2>
+
+      <p>
+        Usted es una de las personas más bonitas
+        que llegaron a mi vida.
+        Gracias por cada sonrisa, cada abrazo
+        y cada momento a su lado. ❤️
+      </p>
+
+      <p>
+        Pase lo que pase, usted permanece
+        en mis recuerdos. ❤️
+      </p>
+
+      <button id="sorpresa">
+        💕 Una última sorpresa
+      </button>
+
+    </section>
+
+    <section id="final" class="pantalla-final oculto">
+
+      <h1>Mi lugar favorito es a su lado ❤️</h1>
+
+      <div class="marco-foto">
+        <img
+          id="foto-romantica"
+          src="foto1.jpg"
+          alt="Nuestros recuerdos especiales"
+        >
+      </div>
+
+      <h2 class="mensaje-final">
+        Mi Whinie Phoo 💕
+      </h2>
+
+      <div class="texto-final">
+        <p>
+          Mi felicidad empieza con su sonrisa y sobre todo su compañía.
+          Lo quiero💕. 🌙✨
+        </p>
+      </div>
+
+      <button id="regresar">
+        💌 Volver a nuestra carta
+      </button>
+
+    </section>
+
+  </main>
+
+  <script>
+    const estrellas = document.getElementById("estrellas");
+
+    for (let i = 0; i < 90; i++) {
+      const estrella = document.createElement("span");
+
+      estrella.className = "estrella";
+      estrella.style.left = Math.random() * 100 + "%";
+      estrella.style.top = Math.random() * 100 + "%";
+      estrella.style.animationDelay = Math.random() * 3 + "s";
+
+      estrellas.appendChild(estrella);
+    }
+
+    function crearCorazon() {
+      const corazon = document.createElement("span");
+      const corazones = ["❤️", "💕", "💗", "💖"];
+
+      corazon.className = "corazon";
+      corazon.textContent = corazones[
+        Math.floor(Math.random() * corazones.length)
+      ];
+
+      corazon.style.left = Math.random() * 100 + "vw";
+      corazon.style.fontSize = 15 + Math.random() * 22 + "px";
+
+      const duracion = 4 + Math.random() * 4;
+
+      corazon.style.animationDuration = duracion + "s";
+
+      document.body.appendChild(corazon);
+
+      setTimeout(() => {
+        corazon.remove();
+      }, duracion * 1000);
+    }
+
+    function crearGuitarra() {
+      const guitarra = document.createElement("span");
+      const elementosMusicales = [
+        "🎸", "🎸", "🎸", "🎵", "🎶", "🎼"
+      ];
+
+      guitarra.className = "guitarra-flotante";
+
+      guitarra.textContent = elementosMusicales[
+        Math.floor(Math.random() * elementosMusicales.length)
+      ];
+
+      guitarra.style.left = Math.random() * 95 + "vw";
+      guitarra.style.fontSize = 20 + Math.random() * 20 + "px";
+
+      const duracion = 7 + Math.random() * 5;
+
+      guitarra.style.animationDuration = duracion + "s";
+
+      document.body.appendChild(guitarra);
+
+      setTimeout(() => {
+        guitarra.remove();
+      }, duracion * 1000);
+    }
+
+    const movimientoReducido = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (!movimientoReducido) {
+      setInterval(crearCorazon, 700);
+      setInterval(crearGuitarra, 1300);
+    }
+
+    const bienvenida = document.getElementById("bienvenida");
+    const carta = document.getElementById("carta");
+    const final = document.getElementById("final");
+
+    document.getElementById("abrir").addEventListener("click", () => {
+      bienvenida.classList.add("oculto");
+      carta.classList.remove("oculto");
+    });
+
+    const fotos = ["foto1.jpg", "foto2.jpg"];
+
+    let fotoActual = 0;
+    let intervaloFotos = null;
+    let transicionFoto = null;
+
+    const imagenRomantica = document.getElementById("foto-romantica");
+
+    function mostrarFoto(indice) {
+      fotoActual = indice;
+      imagenRomantica.src = fotos[fotoActual];
+    }
+
+    function cambiarFoto() {
+      imagenRomantica.classList.add("desvanecer");
+
+      transicionFoto = setTimeout(() => {
+        const siguiente = (fotoActual + 1) % fotos.length;
+
+        mostrarFoto(siguiente);
+        imagenRomantica.classList.remove("desvanecer");
+        transicionFoto = null;
+      }, movimientoReducido ? 0 : 1000);
+    }
+
+    function detenerFotos() {
+      if (intervaloFotos !== null) {
+        clearInterval(intervaloFotos);
+        intervaloFotos = null;
+      }
+
+      if (transicionFoto !== null) {
+        clearTimeout(transicionFoto);
+        transicionFoto = null;
+      }
+
+      imagenRomantica.classList.remove("desvanecer");
+    }
+
+    function iniciarFotos() {
+      detenerFotos();
+      mostrarFoto(0);
+      intervaloFotos = setInterval(cambiarFoto, 5000);
+    }
+
+    document.getElementById("sorpresa").addEventListener("click", () => {
+      carta.classList.add("oculto");
+      final.classList.remove("oculto");
+
+      iniciarFotos();
+
+      if (!movimientoReducido) {
+        for (let i = 0; i < 45; i++) {
+          setTimeout(crearCorazon, i * 90);
+        }
+      }
+    });
+
+    document.getElementById("regresar").addEventListener("click", () => {
+      detenerFotos();
+
+      final.classList.add("oculto");
+      carta.classList.remove("oculto");
+    });
+  </script>
+
+</body>
+</html>
